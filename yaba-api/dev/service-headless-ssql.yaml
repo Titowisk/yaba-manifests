@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: yaba-mssql-service
+spec:
+  type: ClusterIP
+  clusterIP: None  # This makes it a Headless Service, required for StatefulSets
+  selector:
+      app: yaba-mssql
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433

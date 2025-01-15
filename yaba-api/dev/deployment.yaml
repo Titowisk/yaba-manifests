@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yaba-api-deployment
+  labels:
+    app: yaba-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yaba-api
+  template:
+    metadata:
+      labels:
+        app: yaba-api
+    spec:
+      containers:
+      - name: yaba-api
+        image: yaba-api:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: ConnectionStrings__SqlServerDB
+          valueFrom:
+            secretKeyRef:
+              name: yaba-api-secret
+              key: connection-string
+        - name: JwtConfig__SecretKey
+          valueFrom:
+            secretKeyRef:
+              name: yaba-api-secret
+              key: jwt-config-secret-key
+# ---------------------------------
+# template is the blueprint for the pods
+# spec is the configuration for the pods
+# containerPort is the port that the container will listen to
+# imagePullPolicy is Never because I used minikube to create my cluster and so, I had to load a local image built from dockerfile
+    # https://kubernetes.io/docs/concepts/containers/images/#updating-images
+    # minikube image load yaba-api:latest
+    # minikube image ls --format table

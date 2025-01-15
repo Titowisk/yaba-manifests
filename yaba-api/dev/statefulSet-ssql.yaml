@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: yaba-mssql
+spec:
+  serviceName: yaba-mssql-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yaba-mssql
+  template:
+    metadata:
+      labels:
+        app: yaba-mssql
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: yaba-mssql
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1433
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: yaba-api-secret
+              key: mssql-sa-password
+        - name: MSSQL_ENABLE_HADR
+          value: "1"
+        - name: MSSQL_AGENT_ENABLED
+          value: "1"
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: yaba-api-secret
+              key: mssql-sa-password
+        volumeMounts:
+        - name: yaba-mssql-vc
+          mountPath: "/var/opt/mssql"
+  volumeClaimTemplates:
+  - metadata:
+      name: yaba-mssql-vc
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 8Gi
+# ---------------------------------
+# serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set.
