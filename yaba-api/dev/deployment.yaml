@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: yaba-api
-        image: yaba-api:latest
-        imagePullPolicy: Never
+        image: yaba-api:0.4.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         env:
