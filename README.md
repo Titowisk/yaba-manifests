@@ -4,6 +4,8 @@ This repository holds all manifests from Yaba project in order to use ArgoCD.
 ## Yaba-API
 
 # How to Use
+
+## Setup
 - Start minikube: 
     - `minikube start`
 - Apply the argocd manifest: 
@@ -17,6 +19,14 @@ This repository holds all manifests from Yaba project in order to use ArgoCD.
 - any changes to the manifests on this repository will be synchronized eventually
     - a webhook can be configured to apply changes quickly
 
+## API
+- Expose the `yaba-api-service` to access the api
+    - `minikube service yaba-api-service`
+- Use the URL to explore the API
+
+### Optional - API
+- Import Postman Collection and Environments to easily browse the defined API
+    - check `/postman-collection` folder
 
 # References
 - TechWorld with Nana
