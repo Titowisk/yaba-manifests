@@ -1,0 +1,1159 @@
+{
+	"info": {
+		"_postman_id": "2a41abde-133c-49ab-b5a9-d6c3aebc86af",
+		"name": "Yaba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10132311",
+		"_collection_link": "https://bold-desert-1972-1.postman.co/workspace/Vitor-WorkSpace~8001fe82-f14f-4fbb-9a00-cded67aab6ee/collection/10132311-2a41abde-133c-49ab-b5a9-d6c3aebc86af?action=share&source=collection_link&creator=10132311"
+	},
+	"item": [
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "transactions/bank-accounts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/bank-accounts/:id?year=2023",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"bank-accounts",
+								":id"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2023"
+								},
+								{
+									"key": "month",
+									"value": "3",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DevGetByDate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": 1,\r\n    \"BankAccountId\": 9,\r\n    \"year\": 2020,\r\n    \"month\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/DevGetByDate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"DevGetByDate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/bank-accounts/:id/dates",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/bank-accounts/:id/dates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"bank-accounts",
+								":id",
+								"dates"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"BankAccountId\": 9,\r\n    \"UserId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/transactions/GetTransactionDatesByUser",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"transactions",
+										"GetTransactionDatesByUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 15 Aug 2020 18:54:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"year\": 2019,\n        \"months\": [\n            1\n        ]\n    },\n    {\n        \"year\": 2018,\n        \"months\": [\n            12\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "transactions/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/transactions/175",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"transactions",
+								"175"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/transactions/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"transactions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/randomized-data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bankAccountId\": 2,\r\n    \"year\": 2022,\r\n    \"month\": 2,\r\n    \"quantity\": 35\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/randomized-data",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"randomized-data"
+							]
+						},
+						"description": "quantity default = 30"
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"origin\": \"hiperideal\",\n\t\"date\": \"2020-07-23T17:16:40\",\n\t\"amount\": 689.89,\n\t\"bankaccountid\": 2,\n\t\"category\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/bank-accounts/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/bank-accounts/:bankAccountId?origin=Dest: Emporio Dos Graos Comercio&year=2021",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								"bank-accounts",
+								":bankAccountId"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "Dest: Emporio Dos Graos Comercio"
+								},
+								{
+									"key": "month",
+									"value": "8",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "2021"
+								}
+							],
+							"variable": [
+								{
+									"key": "bankAccountId",
+									"value": "9"
+								}
+							]
+						},
+						"description": "HomeExpenses = 1,\n\t\tTransportation = 2,\n\t\tFood = 3,\n\t\tClothing = 4,\n\t\tHealthcare = 5,\n\t\tEntertainment = 6,\n\t\tEducation = 7,\n\t\tSavings = 8,\n\t\tPersonal = 9,\n\n\t\tIncome = 99"
+					},
+					"response": []
+				},
+				{
+					"name": "transactions/:id/bank-accounts/:bankAccountId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/:id/bank-accounts/:bankAccountId?origin=hiperideal",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"transactions",
+								":id",
+								"bank-accounts",
+								":bankAccountId"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "hiperideal"
+								},
+								{
+									"key": "month",
+									"value": "8",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "106"
+								},
+								{
+									"key": "bankAccountId",
+									"value": "2"
+								}
+							]
+						},
+						"description": "HomeExpenses = 1,\n\t\tTransportation = 2,\n\t\tFood = 3,\n\t\tClothing = 4,\n\t\tHealthcare = 5,\n\t\tEntertainment = 6,\n\t\tEducation = 7,\n\t\tSavings = 8,\n\t\tPersonal = 9,\n\n\t\tIncome = 99"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bank-accounts",
+			"item": [
+				{
+					"name": "bank-accounts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"number\": \"906471700\",\r\n\t\"agency\": \"0001\",\r\n\t\"code\": 260\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/bank-accounts/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"bank-accounts",
+								""
+							]
+						},
+						"description": "Create BankAccount for logged user"
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"number\": \"906471700\",\r\n\t\"agency\": \"0001\",\r\n\t\"code\": 260\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/bankaccounts/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"bankaccounts",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Oct 2021 20:51:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": \"Conta bancária criada com sucesso\"\n}"
+						}
+					]
+				},
+				{
+					"name": "bank-accounts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/bank-accounts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"bank-accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bank-accounts/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/bank-accounts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"bank-accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bank-accounts/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"number\": \"12344321\",\r\n\t\"agency\": \"1666\",\r\n    \"code\": 237\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/bank-accounts/8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"bank-accounts",
+								"8"
+							]
+						},
+						"description": "Update a Bank Account of logged user"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"UserId\": 1,\r\n\t\"number\": \"12344321\",\r\n\t\"agency\": \"1666\",\r\n    \"code\": 237\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/bankaccounts/8",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"bankaccounts",
+										"8"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 25 Jul 2020 18:51:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "bank-accounts/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/bank-accounts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"bank-accounts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/bankaccounts/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"bankaccounts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Oct 2021 20:49:27 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "csv-management",
+			"item": [
+				{
+					"name": "csv-management/statements",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "csvFiles",
+									"type": "file",
+									"src": [
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_1_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_2_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_3_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_4_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_5_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_6_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_7_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_8_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_9_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_10_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_11_2020.csv",
+										"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco 2020/Bradesco_12_2020.csv"
+									]
+								},
+								{
+									"key": "bankCode",
+									"value": "237",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bankAccountId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/csv-management/statements",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"csv-management",
+								"statements"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid files",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "csvFiles",
+											"type": "file",
+											"src": [
+												"/C:/Users/rabel/csharp_projects/csvFIles/texto.txt",
+												"/C:/Users/rabel/csharp_projects/csvFIles/vazio.csv"
+											]
+										},
+										{
+											"key": "bankCode",
+											"value": "237",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/csvreader/ReadBankStatements",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"csvreader",
+										"ReadBankStatements"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 18:14:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Content-Length",
+									"value": "225"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"fileName\": \"texto.txt\",\n        \"isSuccessfullRead\": false,\n        \"transactionsSaved\": null,\n        \"initialDate\": null,\n        \"finalDate\": null\n    },\n    {\n        \"fileName\": \"vazio.csv\",\n        \"isSuccessfullRead\": false,\n        \"transactionsSaved\": null,\n        \"initialDate\": null,\n        \"finalDate\": null\n    }\n]"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "csvFiles",
+											"type": "file",
+											"src": [
+												"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco_28042020_184223.csv",
+												"/C:/Users/rabel/csharp_projects/csvFIles/Bradesco_28042020_184256.csv"
+											]
+										},
+										{
+											"key": "bankCode",
+											"value": "237",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/csvreader/ReadBankStatements",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"csvreader",
+										"ReadBankStatements"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 18:12:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Content-Length",
+									"value": "325"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"fileName\": \"Bradesco_28042020_184223.csv\",\n        \"isSuccessfullRead\": true,\n        \"transactionsSaved\": 47,\n        \"initialDate\": \"2020-02-03T00:00:00\",\n        \"finalDate\": \"2020-02-28T00:00:00\"\n    },\n    {\n        \"fileName\": \"Bradesco_28042020_184256.csv\",\n        \"isSuccessfullRead\": true,\n        \"transactionsSaved\": 57,\n        \"initialDate\": \"2020-03-02T00:00:00\",\n        \"finalDate\": \"2020-03-31T00:00:00\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dockerino\",\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"jwtToken\", jsonData.token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"vitor@gmail.com\",\r\n    \"password\": \"A1234567\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Auth/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jul 2020 15:41:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Content-Length",
+									"value": "291"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login realizado com sucesso\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlZpdG9yIiwic3ViIjoiMSIsIm5iZiI6MTU5NTE3MzMwMCwiZXhwIjoxNTk1Nzc4MTAwLCJpYXQiOjE1OTUxNzMzMDAsImlzcyI6IllhYmEgQVBJIiwiYXVkIjoiWWFiYSBBUEkifQ.L_HWZQ7nca2Wjbd-TUoYQYC1DU6eCXqv4g7ICsZ-9bI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "current-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/current-user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"current-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
