@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: yaba-api
-        image: titowisk/yaba-api:0.4.0
+        image: docker.io/titowisk/yaba-api:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
