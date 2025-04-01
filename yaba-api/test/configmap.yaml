@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-configmap
+  namespace: default
+data:
+  # Key-value pairs
+  app.name: "just-for-test"
+  app.environment: "development"
+  app.version: "1.0.0"
+  database.url: "localhost:5432"
+  database.username: "user"
+  database.password: "password"
