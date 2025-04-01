@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: yaba-kafka-worker
-  # namespace: argocd
+  namespace: temporary-kafka-worker
 spec:
   project: default
   source:
