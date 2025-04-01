@@ -5,7 +5,7 @@ metadata:
   labels:
     app: yaba-api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: yaba-api
@@ -109,7 +109,7 @@ metadata:
   labels:
     app: yaba-worker-categorizer
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: yaba-worker-categorizer
