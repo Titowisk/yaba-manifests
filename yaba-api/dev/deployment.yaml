@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
       - name: kafka-cp-broker
-      image: docker.io/confluentinc/cp-kafka
+      image: docker.io/confluentinc/cp-kafka:latest
       imagePullPolicy: IfNotPresent
       ports:
       - containerPort: 9092
@@ -92,7 +92,7 @@ spec:
     spec:
       containers:
       - name: zookeeper
-        image: docker.io/confluentinc/cp-zookeeper
+        image: docker.io/confluentinc/cp-zookeeper:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 2181
