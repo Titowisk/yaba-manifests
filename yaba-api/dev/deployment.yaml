@@ -23,6 +23,18 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
+        - name: AuthConfig__Audiences__0
+          value: yaba-api
+        - name: AuthConfig__Audiences__1
+          value: yaba-auth0
+        - name: AuthConfig__Issuers__0
+          value: yaba-api
+        - name: KafkaConfig__BootstrapServers
+          value: kafka-cp-broker-service:9092
+        - name: KafkaConfig__Partitions
+          value: "3"
+        - name: KafkaConfig__ReplicationFactor
+          value: "1"
         - name: ConnectionStrings__SqlServerDB
           valueFrom:
             secretKeyRef:
@@ -127,6 +139,12 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
+        - name: KafkaConfig__BootstrapServers
+          value: kafka-cp-broker-service:9092
+        - name: KafkaConfig__Partitions
+          value: "3"
+        - name: KafkaConfig__ReplicationFactor
+          value: "1"
         - name: ConnectionStrings__SqlServerDB
           valueFrom:
             secretKeyRef:
