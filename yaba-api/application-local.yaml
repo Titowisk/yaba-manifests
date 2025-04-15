@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yaba-kafka-worker
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Titowisk/yaba-manifests.git
+    targetRevision: feature/kafka-worker
+    path: yaba-api/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: temporary-kafka-worker
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true # automatically reverts changes made manually to cluster to the desired state (git as source of truth)
+    syncOptions:
+    - CreateNamespace=true # automatically creates namespace if none exists

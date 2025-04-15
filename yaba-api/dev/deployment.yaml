@@ -5,7 +5,7 @@ metadata:
   labels:
     app: yaba-api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: yaba-api
@@ -23,6 +23,18 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
+        - name: AuthConfig__Audiences__0
+          value: yaba-api
+        - name: AuthConfig__Audiences__1
+          value: yaba-auth0
+        - name: AuthConfig__Issuers__0
+          value: yaba-api
+        - name: KafkaConfig__BootstrapServers
+          value: kafka-cp-broker-service:9092
+        - name: KafkaConfig__Partitions
+          value: "3"
+        - name: KafkaConfig__ReplicationFactor
+          value: "1"
         - name: ConnectionStrings__SqlServerDB
           valueFrom:
             secretKeyRef:
@@ -41,3 +53,105 @@ spec:
     # https://kubernetes.io/docs/concepts/containers/images/#updating-images
     # minikube image load yaba-api:latest
     # minikube image ls --format table
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-cp-broker-deployment
+  labels:
+    app: kafka-cp-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-cp-broker
+  template:
+    metadata:
+      labels:
+        app: kafka-cp-broker
+    spec:
+      containers:
+      - name: kafka-cp-broker
+        image: docker.io/confluentinc/cp-kafka:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9092
+        env:
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: zookeeper-service:2181
+        - name: KAFKA_BROKER_ID
+          value: "1"
+        - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+          value: "1"
+        - name: KAFKA_ADVERTISED_LISTENERS
+          value: PLAINTEXT://kafka-cp-broker-service:9092
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-deployment
+  labels:
+    app: zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+      - name: zookeeper
+        image: docker.io/confluentinc/cp-zookeeper:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ZOOKEEPER_CLIENT_PORT
+          value: "2181"
+        - name: ZOOKEEPER_TICK_TIME
+          value: "2000"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yaba-worker-categorizer-deployment
+  labels:
+    app: yaba-worker-categorizer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yaba-worker-categorizer
+  template:
+    metadata:
+      labels:
+        app: yaba-worker-categorizer
+    spec:
+      containers:
+      - name: yaba-worker-categorizer
+        image: docker.io/titowisk/yaba-worker-categorizer:v0.1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: KafkaConfig__BootstrapServers
+          value: kafka-cp-broker-service:9092
+        - name: KafkaConfig__Partitions
+          value: "3"
+        - name: KafkaConfig__ReplicationFactor
+          value: "1"
+        - name: ConnectionStrings__SqlServerDB
+          valueFrom:
+            secretKeyRef:
+              name: yaba-api-secret
+              key: connection-string
+        - name: JwtConfig__SecretKey
+          valueFrom:
+            secretKeyRef:
+              name: yaba-api-secret
+              key: jwt-config-secret-key    
